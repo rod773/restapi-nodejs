@@ -25,15 +25,24 @@ app.get("/:id", function (req, res) {
   fs.readFile("./users,json", "utf8", (err, data) => {
     if (err) console.log(err);
 
-    const users = JSON.parse(data);
+    const users = JSON.parse(data); // string to object
 
-    let user = users.filter((user) => {
-      return user.id == 1;
-    });
+    let user = users
+      .filter((user) => {
+        return user.id == 1;
+      })
+      .map((user) => {
+        return {
+          id: user.id,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+        };
+      });
+
+    user = JSON.stringify(user[0]); //object to string
 
     console.log(user);
-
-    user = JSON.stringify(user[0]);
 
     res.end(user);
   });
