@@ -29,7 +29,7 @@ app.get("/:id", function (req, res) {
 
     let [user] = users
       .filter((user) => {
-        return user.id == 1;
+        return user.id == Number(id);
       })
       .map((user) => {
         return {
