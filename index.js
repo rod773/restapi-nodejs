@@ -27,20 +27,19 @@ app.get("/:id", function (req, res) {
 
     const users = JSON.parse(data); // string to object
 
-    let user = users
+    let [user] = users
       .filter((user) => {
         return user.id == 1;
       })
       .map((user) => {
         return {
-          id: user.id,
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
         };
       });
 
-    user = JSON.stringify(user[0]); //object to string
+    user = JSON.stringify(user); //object to string
 
     console.log(user);
 
