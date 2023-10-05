@@ -41,8 +41,14 @@ app.get("/:id", function (req, res) {
 
     user = JSON.stringify(user); //object to string
 
-    console.log(user);
+    if (user) {
+      console.log(user);
 
-    res.end(user);
+      res.end(user);
+    } else {
+      console.log("user not found");
+
+      res.end("user not found");
+    }
   });
 });
