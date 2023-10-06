@@ -4,6 +4,10 @@ import cors from "cors";
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.json());
+
 app.use(cors());
 
 const port = 5000;
@@ -12,6 +16,8 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 
+//********************************* */
+
 app.get("/", function (req, res) {
   fs.readFile("./users,json", "utf8", (err, data) => {
     if (err) console.log(err);
@@ -19,6 +25,8 @@ app.get("/", function (req, res) {
     res.end(data);
   });
 });
+
+//********************************** */
 
 app.get("/:id", function (req, res) {
   console.log(req.params.id);
@@ -54,4 +62,12 @@ app.get("/:id", function (req, res) {
       res.end("user not found");
     }
   });
+});
+
+//******************************** */
+
+app.post("/", (req, res) => {
+  console.log(req.body);
+
+  res.send("received");
 });
