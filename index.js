@@ -67,7 +67,9 @@ app.get("/:id", function (req, res) {
 //******************************** */
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  const obj = req.body;
+
+  console.log(obj);
 
   res.send("received");
 });
